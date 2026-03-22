@@ -25,6 +25,21 @@ def predict_from_csv(file_path: str):
     except Exception as e:
         return {"error": str(e)}
 
+def predict_from_df(df: pd.DataFrame):
+    try:
+        if df.empty:
+            return {"error": "CSV file is empty"}
+
+        predictions = pipeline.predict(df)
+
+        df_last = df.groupby("unit").tail(1).copy()
+        df_last["RUL_prediction"] = predictions
+
+        return df_last[["unit", "cycle", "RUL_prediction"]].to_dict(orient="records")
+
+    except Exception as e:
+        return {"error": str(e)}
+
 
 if __name__ == "__main__":
     result = predict_from_csv('/Users/khursheedfatima/Documents/Projects/Predictive_Maintenance/prediction_data/p1.csv')
