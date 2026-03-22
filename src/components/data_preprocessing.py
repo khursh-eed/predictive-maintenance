@@ -26,7 +26,7 @@ def prepare_data(df):
 
 # dropping unit n cycle - not requied for training (might overfit)
 def drop_columns(df):
-    return df.drop(columns=["unit", "cycle"], errors="ignore")
+    return df.drop(columns=["Unnamed: 0","unit", "cycle"], errors="ignore")
 
 def validate_dataframe(df, name):
     required_cols = ["unit", "cycle"]

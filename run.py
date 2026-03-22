@@ -5,14 +5,18 @@ pipeline = run_training(
     test_df_url='/Users/khursheedfatima/Documents/Projects/Predictive_Maintenance/data/test_df.csv',
     rul_file_path='/Users/khursheedfatima/Documents/Projects/Predictive_Maintenance/data/CMaps/RUL_FD001.txt',
     
-    model_name="rf",
+    model_name="xgb",
     model_params={
-        "n_estimators": 50,
-        "max_depth": 5
+        "n_estimators": 500,
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+
     },
 
     rolling_windows=[5],
-    lags=[1],
-    diffs=True,
-    use_scaling=False
+    lags=[2,5],
+    diffs=False,
+    use_scaling=True
 )

@@ -1,2 +1,4 @@
 .DS_Store
 data/
+artifacts/
+prediction_data/
